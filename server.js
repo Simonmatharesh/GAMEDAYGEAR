@@ -5,7 +5,7 @@ const cors = require("cors");
 const User = require("./User"); 
 const Order = require("./Order"); 
 const adminRoutes = require('./admin-api');
-const stripe = new Stripe("sk_test_51RwcMmFa94hu4vqgTb5wFCkajgEVeJdkFmFSCo3g3wakbGV8tT5UasyYHwXllTKRyi9VZemOliJtpG9oARYv0I7t00ga11gM5e");
+const stripe = new Stripe("");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -139,10 +139,10 @@ app.get("/api/orders/user", async (req, res) => {
     }
 });
 
-// ✅ Create Stripe Checkout Session
+
 app.post("/create-checkout-session", async (req, res) => {
   try {
-    const cartItems = req.body.items; // ← get it from frontend
+    const cartItems = req.body.items; 
     if (!cartItems || cartItems.length === 0) {
       return res.status(400).json({ error: "Cart is empty" });
     }
